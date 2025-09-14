@@ -1,0 +1,78 @@
+{
+  "name": "VibeCaaS - Your Vibe, Your Community",
+  "short_name": "VibeCaaS",
+  "description": "VibeCaaS iOS - A beautiful iOS-style Progressive Web App for building communities and sharing vibes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#007AFF",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-32.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["social", "lifestyle", "productivity"],
+  "screenshots": [
+    {
+      "src": "screenshots/home.png",
+      "sizes": "1170x2532",
+      "type": "image/png",
+      "label": "Home Screen"
+    },
+    {
+      "src": "screenshots/discover.png",
+      "sizes": "1170x2532",
+      "type": "image/png",
+      "label": "Discover"
+    },
+    {
+      "src": "screenshots/profile.png",
+      "sizes": "1170x2532",
+      "type": "image/png",
+      "label": "Profile"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create Post",
+      "short_name": "Create",
+      "description": "Create a new post",
+      "url": "/?tab=create",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Messages",
+      "short_name": "Messages",
+      "description": "View your messages",
+      "url": "/?tab=messages",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "features": [
+    "Cross Platform",
+    "Offline Capable",
+    "Push Notifications",
+    "Background Sync"
+  ]
+}

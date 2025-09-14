@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate VibeCaaS Icons</title>
+</head>
+<body>
+    <h1>VibeCaaS Icon Generator</h1>
+    <p>Right-click and save each icon to the icons/ folder</p>
+    <div id="icons"></div>
+
+    <script>
+        const sizes = [16, 32, 72, 96, 128, 144, 152, 192, 384, 512];
+        const container = document.getElementById('icons');
+
+        sizes.forEach(size => {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#007AFF');
+            gradient.addColorStop(1, '#AF52DE');
+            
+            // Draw rounded rectangle
+            const radius = size * 0.2;
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.moveTo(radius, 0);
+            ctx.lineTo(size - radius, 0);
+            ctx.quadraticCurveTo(size, 0, size, radius);
+            ctx.lineTo(size, size - radius);
+            ctx.quadraticCurveTo(size, size, size - radius, size);
+            ctx.lineTo(radius, size);
+            ctx.quadraticCurveTo(0, size, 0, size - radius);
+            ctx.lineTo(0, radius);
+            ctx.quadraticCurveTo(0, 0, radius, 0);
+            ctx.closePath();
+            ctx.fill();
+
+            // Draw V logo
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.5}px -apple-system, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('V', size / 2, size / 2);
+
+            // Create download link
+            const link = document.createElement('a');
+            link.download = `icon-${size}.png`;
+            link.href = canvas.toDataURL();
+            link.textContent = `Download ${size}x${size}`;
+            link.style.display = 'block';
+            link.style.margin = '10px';
+            
+            container.appendChild(canvas);
+            container.appendChild(link);
+        });
+
+        // Generate splash screen
+        const splashCanvas = document.createElement('canvas');
+        splashCanvas.width = 2048;
+        splashCanvas.height = 2732;
+        const splashCtx = splashCanvas.getContext('2d');
+
+        // Gradient background
+        const splashGradient = splashCtx.createLinearGradient(0, 0, 2048, 2732);
+        splashGradient.addColorStop(0, '#007AFF');
+        splashGradient.addColorStop(1, '#AF52DE');
+        splashCtx.fillStyle = splashGradient;
+        splashCtx.fillRect(0, 0, 2048, 2732);
+
+        // Logo
+        splashCtx.fillStyle = 'white';
+        splashCtx.font = 'bold 400px -apple-system, sans-serif';
+        splashCtx.textAlign = 'center';
+        splashCtx.textBaseline = 'middle';
+        splashCtx.fillText('VibeCaaS', 1024, 1366);
+
+        const splashLink = document.createElement('a');
+        splashLink.download = 'splash-2048x2732.png';
+        splashLink.href = splashCanvas.toDataURL();
+        splashLink.textContent = 'Download Splash Screen';
+        splashLink.style.display = 'block';
+        splashLink.style.margin = '10px';
+        
+        container.appendChild(document.createElement('hr'));
+        container.appendChild(splashCanvas);
+        container.appendChild(splashLink);
+    </script>
+</body>
+</html>
