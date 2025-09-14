@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>VibeCaaS</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="VibeCaaS">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="VibeCaaS - Your Vibe, Your Community">
+    
+    <!-- Icons -->
+    <link rel="apple-touch-icon" href="icons/icon-192.svg">
+    <link rel="icon" type="image/svg+xml" href="icons/icon-32.svg">
+    <link rel="icon" type="image/svg+xml" sizes="any" href="icons/icon-512.svg">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Splash Screens -->
+    <link rel="apple-touch-startup-image" href="icons/splash-2048x2732.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)">
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">
+            <span class="time">9:41</span>
+        </div>
+        <div class="status-center">
+            <div class="notch"></div>
+        </div>
+        <div class="status-right">
+            <span class="signal">📶</span>
+            <span class="wifi">📶</span>
+            <span class="battery">🔋</span>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <button class="btn-icon" id="menuBtn">☰</button>
+            </div>
+            <h1 class="app-title">VibeCaaS</h1>
+            <div class="header-right">
+                <button class="btn-icon" id="notificationBtn">
+                    <span class="notification-badge" id="notificationBadge">3</span>
+                    🔔
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tab-navigation">
+            <button class="tab-item active" data-tab="home">
+                <span class="tab-icon">🏠</span>
+                <span class="tab-label">Home</span>
+            </button>
+            <button class="tab-item" data-tab="discover">
+                <span class="tab-icon">🔍</span>
+                <span class="tab-label">Discover</span>
+            </button>
+            <button class="tab-item" data-tab="create">
+                <span class="tab-icon">➕</span>
+                <span class="tab-label">Create</span>
+            </button>
+            <button class="tab-item" data-tab="messages">
+                <span class="tab-icon">💬</span>
+                <span class="tab-label">Messages</span>
+            </button>
+            <button class="tab-item" data-tab="profile">
+                <span class="tab-icon">👤</span>
+                <span class="tab-label">Profile</span>
+            </button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="content-area">
+            <!-- Home Tab -->
+            <div class="tab-content active" id="home">
+                <div class="welcome-card">
+                    <h2>Welcome to VibeCaaS</h2>
+                    <p>Your Community, Your Vibe</p>
+                    <button class="btn-primary" id="getStartedBtn">Get Started</button>
+                </div>
+
+                <div class="feed-container">
+                    <div class="post-card">
+                        <div class="post-header">
+                            <img src="https://ui-avatars.com/api/?name=Alex+Johnson&background=007AFF&color=fff" alt="User" class="avatar">
+                            <div class="post-info">
+                                <h3>Alex Johnson</h3>
+                                <span class="post-time">2 hours ago</span>
+                            </div>
+                            <button class="btn-icon">⋯</button>
+                        </div>
+                        <div class="post-content">
+                            <p>Just launched my new project! Excited to share it with the VibeCaaS community 🚀</p>
+                            <img src="https://picsum.photos/400/300?random=1" alt="Post" class="post-image">
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn">❤️ 42</button>
+                            <button class="action-btn">💬 12</button>
+                            <button class="action-btn">🔄 5</button>
+                            <button class="action-btn">📤</button>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-header">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Chen&background=FF2D55&color=fff" alt="User" class="avatar">
+                            <div class="post-info">
+                                <h3>Sarah Chen</h3>
+                                <span class="post-time">5 hours ago</span>
+                            </div>
+                            <button class="btn-icon">⋯</button>
+                        </div>
+                        <div class="post-content">
+                            <p>Amazing workshop today on iOS design patterns! Thanks to everyone who joined 🎨</p>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn">❤️ 28</button>
+                            <button class="action-btn">💬 8</button>
+                            <button class="action-btn">🔄 3</button>
+                            <button class="action-btn">📤</button>
+                        </div>
+                    </div>
+
+                    <div class="post-card">
+                        <div class="post-header">
+                            <img src="https://ui-avatars.com/api/?name=Mike+Davis&background=34C759&color=fff" alt="User" class="avatar">
+                            <div class="post-info">
+                                <h3>Mike Davis</h3>
+                                <span class="post-time">1 day ago</span>
+                            </div>
+                            <button class="btn-icon">⋯</button>
+                        </div>
+                        <div class="post-content">
+                            <p>Check out this beautiful sunset from my morning run! 🌅</p>
+                            <img src="https://picsum.photos/400/300?random=2" alt="Post" class="post-image">
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn">❤️ 156</button>
+                            <button class="action-btn">💬 24</button>
+                            <button class="action-btn">🔄 12</button>
+                            <button class="action-btn">📤</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discover Tab -->
+            <div class="tab-content" id="discover">
+                <div class="search-container">
+                    <input type="search" class="search-input" placeholder="Search VibeCaaS...">
+                </div>
+                
+                <div class="trending-section">
+                    <h2>Trending Topics</h2>
+                    <div class="trending-grid">
+                        <div class="trending-card">
+                            <span class="trending-icon">🔥</span>
+                            <h3>#TechTrends</h3>
+                            <p>2.3k posts</p>
+                        </div>
+                        <div class="trending-card">
+                            <span class="trending-icon">🎨</span>
+                            <h3>#DesignDaily</h3>
+                            <p>1.8k posts</p>
+                        </div>
+                        <div class="trending-card">
+                            <span class="trending-icon">💡</span>
+                            <h3>#Innovation</h3>
+                            <p>3.1k posts</p>
+                        </div>
+                        <div class="trending-card">
+                            <span class="trending-icon">🌱</span>
+                            <h3>#Sustainability</h3>
+                            <p>956 posts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="suggested-section">
+                    <h2>Suggested Communities</h2>
+                    <div class="community-list">
+                        <div class="community-card">
+                            <img src="https://ui-avatars.com/api/?name=iOS+Developers&background=007AFF&color=fff" alt="Community" class="community-avatar">
+                            <div class="community-info">
+                                <h3>iOS Developers</h3>
+                                <p>12.5k members</p>
+                            </div>
+                            <button class="btn-secondary">Join</button>
+                        </div>
+                        <div class="community-card">
+                            <img src="https://ui-avatars.com/api/?name=Design+Hub&background=FF9500&color=fff" alt="Community" class="community-avatar">
+                            <div class="community-info">
+                                <h3>Design Hub</h3>
+                                <p>8.2k members</p>
+                            </div>
+                            <button class="btn-secondary">Join</button>
+                        </div>
+                        <div class="community-card">
+                            <img src="https://ui-avatars.com/api/?name=Startup+Network&background=AF52DE&color=fff" alt="Community" class="community-avatar">
+                            <div class="community-info">
+                                <h3>Startup Network</h3>
+                                <p>5.7k members</p>
+                            </div>
+                            <button class="btn-secondary">Join</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Tab -->
+            <div class="tab-content" id="create">
+                <div class="create-container">
+                    <h2>Create New Post</h2>
+                    <form class="create-form">
+                        <textarea class="post-textarea" placeholder="What's on your mind?" rows="4"></textarea>
+                        
+                        <div class="media-preview" id="mediaPreview"></div>
+                        
+                        <div class="create-actions">
+                            <button type="button" class="media-btn">
+                                <span>📷</span>
+                                <input type="file" accept="image/*" class="file-input" id="imageInput">
+                            </button>
+                            <button type="button" class="media-btn">
+                                <span>🎥</span>
+                                <input type="file" accept="video/*" class="file-input">
+                            </button>
+                            <button type="button" class="media-btn">
+                                <span>📍</span>
+                            </button>
+                            <button type="button" class="media-btn">
+                                <span>😊</span>
+                            </button>
+                        </div>
+                        
+                        <div class="create-options">
+                            <label class="switch-container">
+                                <span>Public Post</span>
+                                <input type="checkbox" class="switch-input" checked>
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-full">Share Post</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Messages Tab -->
+            <div class="tab-content" id="messages">
+                <div class="messages-container">
+                    <div class="message-list">
+                        <div class="message-item">
+                            <img src="https://ui-avatars.com/api/?name=Emma+Wilson&background=5AC8FA&color=fff" alt="User" class="avatar">
+                            <div class="message-info">
+                                <h3>Emma Wilson</h3>
+                                <p>Hey! How's the project going?</p>
+                            </div>
+                            <span class="message-time">2m</span>
+                        </div>
+                        <div class="message-item">
+                            <img src="https://ui-avatars.com/api/?name=Team+Chat&background=FF3B30&color=fff" alt="User" class="avatar">
+                            <div class="message-info">
+                                <h3>Team Chat</h3>
+                                <p>John: Meeting at 3pm today!</p>
+                            </div>
+                            <span class="message-time">1h</span>
+                        </div>
+                        <div class="message-item">
+                            <img src="https://ui-avatars.com/api/?name=Lisa+Park&background=FFCC00&color=fff" alt="User" class="avatar">
+                            <div class="message-info">
+                                <h3>Lisa Park</h3>
+                                <p>Thanks for the feedback!</p>
+                            </div>
+                            <span class="message-time">3h</span>
+                        </div>
+                        <div class="message-item">
+                            <img src="https://ui-avatars.com/api/?name=Design+Team&background=34C759&color=fff" alt="User" class="avatar">
+                            <div class="message-info">
+                                <h3>Design Team</h3>
+                                <p>New mockups are ready</p>
+                            </div>
+                            <span class="message-time">5h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div class="tab-content" id="profile">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <img src="https://ui-avatars.com/api/?name=You&background=007AFF&color=fff&size=120" alt="Profile" class="profile-avatar">
+                        <h2>Your Name</h2>
+                        <p>@yourusername</p>
+                        <button class="btn-secondary">Edit Profile</button>
+                    </div>
+                    
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <h3>128</h3>
+                            <p>Posts</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>1.2k</h3>
+                            <p>Followers</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>543</h3>
+                            <p>Following</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-menu">
+                        <button class="menu-item">
+                            <span>⚙️</span>
+                            <span>Settings</span>
+                            <span class="chevron">›</span>
+                        </button>
+                        <button class="menu-item">
+                            <span>🔔</span>
+                            <span>Notifications</span>
+                            <span class="chevron">›</span>
+                        </button>
+                        <button class="menu-item">
+                            <span>🔒</span>
+                            <span>Privacy</span>
+                            <span class="chevron">›</span>
+                        </button>
+                        <button class="menu-item">
+                            <span>❓</span>
+                            <span>Help & Support</span>
+                            <span class="chevron">›</span>
+                        </button>
+                        <button class="menu-item">
+                            <span>📱</span>
+                            <span>Install App</span>
+                            <span class="chevron">›</span>
+                        </button>
+                        <button class="menu-item" id="logoutBtn">
+                            <span>🚪</span>
+                            <span>Sign Out</span>
+                            <span class="chevron">›</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h2>Menu</h2>
+            <button class="btn-icon" id="closeMenuBtn">✕</button>
+        </div>
+        <div class="menu-content">
+            <button class="menu-item">
+                <span>🏠</span>
+                <span>Home</span>
+            </button>
+            <button class="menu-item">
+                <span>👥</span>
+                <span>Communities</span>
+            </button>
+            <button class="menu-item">
+                <span>📊</span>
+                <span>Analytics</span>
+            </button>
+            <button class="menu-item">
+                <span>🎯</span>
+                <span>Goals</span>
+            </button>
+            <button class="menu-item">
+                <span>💰</span>
+                <span>Monetization</span>
+            </button>
+            <button class="menu-item">
+                <span>🎨</span>
+                <span>Themes</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Install Prompt -->
+    <div class="install-prompt" id="installPrompt">
+        <p>Install VibeCaaS for a better experience!</p>
+        <button class="btn-primary" id="installBtn">Install</button>
+        <button class="btn-text" id="dismissBtn">Not Now</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
