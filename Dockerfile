@@ -16,8 +16,8 @@ ARG UID=1001
 ARG GID=1001
 ARG USERNAME=vibecaas
 
-######## VibeCaaS UI frontend ########
-FROM --platform=$BUILDPLATFORM node:22-alpine3.20 AS build
+######## VibeCaaS UI frontend build ########
+FROM --platform=$BUILDPLATFORM node:22-alpine3.20 AS frontend-build
 ARG BUILD_HASH
 
 # Security: Create non-root user for build
@@ -27,7 +27,7 @@ RUN addgroup -g 1001 -S nodejs && \
 WORKDIR /app
 
 # Install build dependencies
-RUN apk add --no-cache git dumb-init
+RUN apk add --no-cache git
 
 # Copy package files and install dependencies
 COPY --chown=vibecaas:nodejs package.json package-lock.json ./
@@ -44,43 +44,8 @@ ENV APP_BUILD_HASH=${BUILD_HASH}
 USER vibecaas
 RUN npm run build
 
-# Create optimized production image for frontend
-FROM nginx:1.25-alpine AS frontend
-ARG UID
-ARG GID
-ARG USERNAME
-
-# Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init
-
-# Create non-root user
-RUN addgroup -g ${GID} -S ${USERNAME} && \
-    adduser -S ${USERNAME} -u ${UID} -G ${USERNAME}
-
-# Copy built frontend
-COPY --from=build --chown=${USERNAME}:${USERNAME} /app/build /usr/share/nginx/html
-
-# Copy nginx configuration
-COPY --chown=${USERNAME}:${USERNAME} docker/nginx.conf /etc/nginx/nginx.conf
-
-# Create necessary directories
-RUN mkdir -p /var/cache/nginx /var/log/nginx /var/run && \
-    chown -R ${USERNAME}:${USERNAME} /var/cache/nginx /var/log/nginx /var/run /usr/share/nginx/html
-
-# Expose port
-EXPOSE 8080
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --no-verbose --tries=1 --spider http://localhost:8080/health || exit 1
-
-# Use dumb-init and non-root user
-USER ${USERNAME}
-ENTRYPOINT ["dumb-init", "--"]
-CMD ["nginx", "-g", "daemon off;"]
-
 ######## WebUI backend ########
-FROM python:3.11-slim-bookworm AS base
+FROM python:3.11-slim-bookworm AS backend
 
 # Use args
 ARG USE_CUDA
@@ -196,9 +161,11 @@ RUN python -c "import os; from sentence_transformers import SentenceTransformer;
 
 # Copy application files
 COPY --chown=${USERNAME}:${USERNAME} ./backend .
-COPY --chown=${USERNAME}:${USERNAME} --from=build /app/build /app/build
-COPY --chown=${USERNAME}:${USERNAME} --from=build /app/CHANGELOG.md /app/CHANGELOG.md
-COPY --chown=${USERNAME}:${USERNAME} --from=build /app/package.json /app/package.json
+
+# Copy frontend build from frontend-build stage
+COPY --chown=${USERNAME}:${USERNAME} --from=frontend-build /app/build /app/build
+COPY --chown=${USERNAME}:${USERNAME} --from=frontend-build /app/CHANGELOG.md /app/CHANGELOG.md
+COPY --chown=${USERNAME}:${USERNAME} --from=frontend-build /app/package.json /app/package.json
 
 # Set proper permissions
 RUN chown -R ${USERNAME}:${USERNAME} /app/backend/data/

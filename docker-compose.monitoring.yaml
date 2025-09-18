@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 # VibeCaaS UI Monitoring Stack
 # Includes Prometheus, Grafana, and ELK stack for comprehensive monitoring

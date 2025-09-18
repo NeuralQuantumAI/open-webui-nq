@@ -44,7 +44,7 @@ ARG UID
 ARG GID
 ARG USERNAME
 
-# Install dumb-init for proper signal handling
+# Install dumb-init and wget for proper signal handling and health checks
 RUN apk add --no-cache dumb-init wget
 
 # Create non-root user
