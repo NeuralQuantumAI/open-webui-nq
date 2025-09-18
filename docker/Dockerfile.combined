@@ -1,0 +1,231 @@
+# syntax=docker/dockerfile:1
+# VibeCaaS UI - Combined Production-Ready Docker Image
+# Single container with both frontend and backend for simplified deployment
+
+ARG NODE_VERSION=22
+ARG PYTHON_VERSION=3.11
+ARG USE_CUDA=false
+ARG USE_OLLAMA=false
+ARG USE_CUDA_VER=cu128
+ARG USE_EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
+ARG USE_RERANKING_MODEL=""
+ARG USE_TIKTOKEN_ENCODING_NAME="cl100k_base"
+ARG UID=1001
+ARG GID=1001
+ARG USERNAME=vibecaas
+
+######## Frontend Build Stage ########
+FROM node:${NODE_VERSION}-alpine3.20 AS frontend-build
+
+# Create non-root user for build
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S vibecaas -u 1001 -G nodejs
+
+WORKDIR /app
+
+# Install build dependencies
+RUN apk add --no-cache git
+
+# Copy package files
+COPY --chown=vibecaas:nodejs package.json package-lock.json ./
+
+# Install dependencies
+RUN npm ci --only=production --no-audit --no-fund
+
+# Copy source code
+COPY --chown=vibecaas:nodejs . .
+
+# Set build environment
+ENV NODE_ENV=production
+ENV APP_BUILD_HASH=${BUILD_HASH:-dev-build}
+
+# Build the application
+USER vibecaas
+RUN npm run build
+
+######## Backend Build Stage ########
+FROM python:${PYTHON_VERSION}-slim-bookworm AS backend-build
+
+# Use args
+ARG USE_CUDA
+ARG USE_OLLAMA
+ARG USE_CUDA_VER
+ARG USE_EMBEDDING_MODEL
+ARG USE_RERANKING_MODEL
+ARG USE_TIKTOKEN_ENCODING_NAME
+
+# Set environment variables
+ENV ENV=prod \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    USE_OLLAMA_DOCKER=${USE_OLLAMA} \
+    USE_CUDA_DOCKER=${USE_CUDA} \
+    USE_CUDA_DOCKER_VER=${USE_CUDA_VER} \
+    USE_EMBEDDING_MODEL_DOCKER=${USE_EMBEDDING_MODEL} \
+    USE_RERANKING_MODEL_DOCKER=${USE_RERANKING_MODEL}
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    git \
+    build-essential \
+    pandoc \
+    netcat-openbsd \
+    curl \
+    jq \
+    gcc \
+    python3-dev \
+    ffmpeg \
+    libsm6 \
+    libxext6 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Ollama if requested
+RUN if [ "$USE_OLLAMA" = "true" ]; then \
+    curl -fsSL https://ollama.com/install.sh | sh; \
+    fi
+
+# Install Python dependencies
+COPY --chown=1001:1001 ./backend/requirements.txt ./requirements.txt
+
+# Install Python package manager and dependencies
+RUN pip3 install --no-cache-dir uv
+
+# Install PyTorch and Python dependencies based on CUDA support
+RUN if [ "$USE_CUDA" = "true" ]; then \
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/$USE_CUDA_DOCKER_VER --no-cache-dir; \
+    else \
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu --no-cache-dir; \
+    fi
+
+# Install Python requirements
+RUN uv pip install --system -r requirements.txt --no-cache-dir
+
+######## Production Stage ########
+FROM python:${PYTHON_VERSION}-slim-bookworm AS production
+
+# Use args
+ARG USE_CUDA
+ARG USE_OLLAMA
+ARG USE_CUDA_VER
+ARG USE_EMBEDDING_MODEL
+ARG USE_RERANKING_MODEL
+ARG USE_TIKTOKEN_ENCODING_NAME
+ARG UID
+ARG GID
+ARG USERNAME
+
+# Set environment variables
+ENV ENV=prod \
+    PORT=8080 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    USE_OLLAMA_DOCKER=${USE_OLLAMA} \
+    USE_CUDA_DOCKER=${USE_CUDA} \
+    USE_CUDA_DOCKER_VER=${USE_CUDA_VER} \
+    USE_EMBEDDING_MODEL_DOCKER=${USE_EMBEDDING_MODEL} \
+    USE_RERANKING_MODEL_DOCKER=${USE_RERANKING_MODEL}
+
+# API and Security Configuration
+ENV OLLAMA_BASE_URL="/ollama" \
+    OPENAI_API_BASE_URL="" \
+    OPENAI_API_KEY="" \
+    WEBUI_SECRET_KEY="" \
+    SCARF_NO_ANALYTICS=true \
+    DO_NOT_TRACK=true \
+    ANONYMIZED_TELEMETRY=false
+
+# Model Configuration
+ENV WHISPER_MODEL="base" \
+    WHISPER_MODEL_DIR="/app/backend/data/cache/whisper/models" \
+    RAG_EMBEDDING_MODEL="$USE_EMBEDDING_MODEL_DOCKER" \
+    RAG_RERANKING_MODEL="$USE_RERANKING_MODEL_DOCKER" \
+    SENTENCE_TRANSFORMERS_HOME="/app/backend/data/cache/embedding/models" \
+    TIKTOKEN_ENCODING_NAME="$USE_TIKTOKEN_ENCODING_NAME" \
+    TIKTOKEN_CACHE_DIR="/app/backend/data/cache/tiktoken" \
+    HF_HOME="/app/backend/data/cache/embedding/models"
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    nginx \
+    git \
+    build-essential \
+    pandoc \
+    netcat-openbsd \
+    curl \
+    jq \
+    gcc \
+    python3-dev \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
+    dumb-init && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Ollama if requested
+RUN if [ "$USE_OLLAMA" = "true" ]; then \
+    curl -fsSL https://ollama.com/install.sh | sh; \
+    fi
+
+# Create non-root user
+RUN groupadd -g ${GID} ${USERNAME} && \
+    useradd -r -u ${UID} -g ${GID} -d /app -s /bin/bash ${USERNAME}
+
+# Set working directory
+WORKDIR /app/backend
+
+# Create necessary directories and set permissions
+RUN mkdir -p /app/backend/data/cache/whisper/models \
+    /app/backend/data/cache/embedding/models \
+    /app/backend/data/cache/tiktoken \
+    /home/${USERNAME}/.cache/chroma \
+    /var/log/nginx \
+    /var/lib/nginx \
+    /var/cache/nginx && \
+    echo -n 00000000-0000-0000-0000-000000000000 > /home/${USERNAME}/.cache/chroma/telemetry_user_id && \
+    chown -R ${UID}:${GID} /app /home/${USERNAME} /var/log/nginx /var/lib/nginx /var/cache/nginx
+
+# Copy Python dependencies from build stage
+COPY --from=backend-build --chown=${USERNAME}:${USERNAME} /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=backend-build --chown=${USERNAME}:${USERNAME} /usr/local/bin /usr/local/bin
+
+# Copy backend application files
+COPY --chown=${USERNAME}:${USERNAME} ./backend .
+
+# Copy frontend build
+COPY --from=frontend-build --chown=${USERNAME}:${USERNAME} /app/build /app/build
+
+# Copy nginx configuration
+COPY --chown=${USERNAME}:${USERNAME} docker/nginx-combined.conf /etc/nginx/nginx.conf
+
+# Pre-download models for faster startup
+RUN python -c "import os; from sentence_transformers import SentenceTransformer; SentenceTransformer(os.environ['RAG_EMBEDDING_MODEL'], device='cpu')" && \
+    python -c "import os; from faster_whisper import WhisperModel; WhisperModel(os.environ['WHISPER_MODEL'], device='cpu', compute_type='int8', download_root=os.environ['WHISPER_MODEL_DIR'])" && \
+    python -c "import os; import tiktoken; tiktoken.get_encoding(os.environ['TIKTOKEN_ENCODING_NAME'])"
+
+# Set proper permissions
+RUN chown -R ${USERNAME}:${USERNAME} /app/backend/data/
+
+# Expose port
+EXPOSE 8080
+
+# Add comprehensive health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl --silent --fail http://localhost:8080/health | jq -ne 'input.status == true' || exit 1
+
+# Switch to non-root user
+USER ${USERNAME}
+
+# Set build metadata
+ARG BUILD_HASH
+ENV WEBUI_BUILD_VERSION=${BUILD_HASH:-dev-build}
+ENV DOCKER=true
+
+# Use dumb-init for proper signal handling
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["bash", "start-combined.sh"]
