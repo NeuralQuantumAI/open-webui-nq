@@ -1,7 +1,7 @@
 {
-  "name": "VibeCaaS - Your Vibe, Your Community",
-  "short_name": "VibeCaaS",
-  "description": "VibeCaaS iOS - A beautiful iOS-style Progressive Web App for building communities and sharing vibes",
+  "name": "VibeCaaS UI - Cross-Platform Community App",
+  "short_name": "VibeCaaS UI",
+  "description": "VibeCaaS UI - Cross-platform web, iOS, and Android application for building communities and sharing vibes",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

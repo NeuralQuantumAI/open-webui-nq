@@ -1,16 +1,18 @@
-# VibeCaaS iOS - Progressive Web App
+# VibeCaaS UI - Cross-Platform Community Application
 
-A beautiful iOS-style Progressive Web App (PWA) for building communities and sharing vibes. Built with vanilla JavaScript, HTML5, and CSS3.
+A comprehensive cross-platform application for building communities and sharing vibes. Available as a Progressive Web App (PWA), native iOS app, and native Android app. Built with SvelteKit, Capacitor, and modern web technologies.
 
 ## 🌟 Features
 
-- **iOS-Style Design**: Beautiful, native iOS-like interface with smooth animations
+- **Cross-Platform**: Web, iOS, and Android applications from a single codebase
 - **Progressive Web App**: Install on any device, works offline
+- **Native Mobile Apps**: Full native iOS and Android apps with device integration
 - **Responsive Design**: Perfect on phones, tablets, and desktops
 - **Dark Mode Support**: Automatic theme switching based on system preferences
 - **Offline Capable**: Service Worker for offline functionality
 - **Push Notifications**: Stay connected with real-time updates
 - **Modern UI/UX**: Gesture support, haptic feedback, pull-to-refresh
+- **Device Integration**: Camera, microphone, location, and native device features
 
 ## 📱 App Sections
 
