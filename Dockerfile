@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+# VibeCaaS UI - Cross-Platform Web, iOS, and Android Application
 # Initialize device type args
 # use build args in the docker build command with --build-arg="BUILDARG=true"
 ARG USE_CUDA=false
@@ -20,7 +21,7 @@ ARG BUILD_HASH=dev-build
 ARG UID=0
 ARG GID=0
 
-######## WebUI frontend ########
+######## VibeCaaS UI frontend ########
 FROM --platform=$BUILDPLATFORM node:22-alpine3.20 AS build
 ARG BUILD_HASH
 

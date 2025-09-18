@@ -24,7 +24,6 @@
 	dayjs.extend(duration);
 	dayjs.extend(relativeTime);
 
-	import { PaneGroup, Pane, PaneResizer } from 'paneforge';
 
 	import { compressImage, copyToClipboard, splitStream } from '$lib/utils';
 	import { WEBUI_API_BASE_URL, WEBUI_BASE_URL } from '$lib/constants';

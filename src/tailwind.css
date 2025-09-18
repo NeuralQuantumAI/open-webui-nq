@@ -1,6 +1,6 @@
-@import 'tailwindcss';
-
-@config '../tailwind.config.js';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -38,17 +38,27 @@
 
 	input::placeholder,
 	textarea::placeholder {
-		color: theme(--color-gray-400);
+		color: #9ca3af;
 	}
 
 	input[type='checkbox'] {
-		@apply appearance-none size-3.5 align-middle bg-white border border-gray-300 rounded transition cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-800 dark:border-gray-600 self-center;
+		appearance: none;
+		width: 0.875rem;
+		height: 0.875rem;
+		vertical-align: middle;
+		background-color: white;
+		border: 1px solid #d1d5db;
+		border-radius: 0.25rem;
+		transition: all 0.15s ease-in-out;
+		cursor: pointer;
+		align-self: center;
 		/* Center the custom mark */
 		display: inline-block;
 		position: relative;
 	}
 	input[type='checkbox']:checked {
-		@apply bg-blue-600 border-blue-600;
+		background-color: #2563eb;
+		border-color: #2563eb;
 	}
 	input[type='checkbox']:after {
 		content: '';
@@ -71,4 +81,3 @@
 	}
 }
 
-@custom-variant hover (&:hover);
