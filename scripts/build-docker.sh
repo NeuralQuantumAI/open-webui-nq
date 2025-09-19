@@ -32,11 +32,12 @@ print_error() {
 }
 
 # Default values
-IMAGE_NAME="vibecaas-ui"
+IMAGE_NAME="neuralquantum/vibecaas-ui"
 TAG="latest"
 PLATFORM="linux/amd64"
 USE_CUDA="false"
 USE_OLLAMA="false"
+PUSH="false"
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -61,14 +62,19 @@ while [[ $# -gt 0 ]]; do
             USE_OLLAMA="true"
             shift
             ;;
+        --push)
+            PUSH="true"
+            shift
+            ;;
         --help)
             echo "Usage: $0 [OPTIONS]"
             echo "Options:"
-            echo "  --name NAME      Docker image name (default: vibecaas-ui)"
+            echo "  --name NAME      Docker image name (default: neuralquantum/vibecaas-ui)"
             echo "  --tag TAG        Docker image tag (default: latest)"
             echo "  --platform PLAT  Target platform (default: linux/amd64)"
             echo "  --cuda           Enable CUDA support"
             echo "  --ollama         Enable Ollama support"
+            echo "  --push           Push image to registry after successful build"
             echo "  --help           Show this help message"
             exit 0
             ;;
@@ -100,6 +106,19 @@ if [ $? -eq 0 ]; then
     print_status "Image: ${FULL_IMAGE_NAME}"
     print_status "To run the container:"
     print_status "  docker run -p 8080:8080 ${FULL_IMAGE_NAME}"
+    
+    # Push image if --push flag was specified
+    if [ "$PUSH" = "true" ]; then
+        print_status "Pushing image to registry..."
+        docker push "${FULL_IMAGE_NAME}"
+        if [ $? -eq 0 ]; then
+            print_success "Image pushed successfully! 🚀"
+            print_status "Pushed: ${FULL_IMAGE_NAME}"
+        else
+            print_error "Docker push failed!"
+            exit 1
+        fi
+    fi
 else
     print_error "Docker build failed!"
     exit 1

@@ -2,6 +2,41 @@
 
 A comprehensive cross-platform application for building communities and sharing vibes. Available as a Progressive Web App (PWA), native iOS app, and native Android app. Built with SvelteKit, Capacitor, and modern web technologies.
 
+## 🐳 Docker Quick Start
+
+### Pull and Run (Recommended)
+
+```bash
+# Pull the latest image
+docker pull neuralquantum/vibecaas-ui:latest
+
+# Run with default settings
+docker run -d --name vibecaas-ui -p 3000:8080 -e DOCKER=true -v vibecaas-ui:/app/backend/data neuralquantum/vibecaas-ui:latest
+```
+
+### Build Locally
+
+```bash
+# Build using the provided script
+./scripts/build-docker.sh --tag latest
+
+# Build and push to registry (requires login)
+./scripts/build-docker.sh --tag latest --push
+```
+
+### Docker Compose
+
+```bash
+# Start with default configuration
+docker compose up -d
+
+# Customize port and tag
+PORT=8080 TAG=latest docker compose up -d
+
+# Build and start
+docker compose up -d --build
+```
+
 ## 🌟 Features
 
 - **Cross-Platform**: Web, iOS, and Android applications from a single codebase
