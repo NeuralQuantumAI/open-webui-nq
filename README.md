@@ -1,30 +1,22 @@
-# VibeCaaS UI - Cross-Platform Community Application
+# Open WebUI - Neural Quantum AI Fork
 
-A comprehensive cross-platform application for building communities and sharing vibes. Available as a Progressive Web App (PWA), native iOS app, and native Android app. Built with SvelteKit, Capacitor, and modern web technologies.
+A user-friendly AI interface that supports Ollama, OpenAI API, and more. This is a fork of the original [Open WebUI](https://github.com/open-webui/open-webui) project, enhanced by Neural Quantum AI.
 
-## 🐳 Docker Quick Start
+Visit [openwebui.com](https://openwebui.com) for more information.
 
-### Pull and Run (Recommended)
+## 🚀 Quick Start
+
+### Using Docker (Recommended)
 
 ```bash
 # Pull the latest image
-docker pull neuralquantum/vibecaas-ui:latest
+docker pull neuralquantum/open-webui-nq:latest
 
 # Run with default settings
-docker run -d --name vibecaas-ui -p 3000:8080 -e DOCKER=true -v vibecaas-ui:/app/backend/data neuralquantum/vibecaas-ui:latest
+docker run -d --name open-webui-nq -p 3000:8080 -e DOCKER=true -v open-webui-nq:/app/backend/data neuralquantum/open-webui-nq:latest
 ```
 
-### Build Locally
-
-```bash
-# Build using the provided script
-./scripts/build-docker.sh --tag latest
-
-# Build and push to registry (requires login)
-./scripts/build-docker.sh --tag latest --push
-```
-
-### Docker Compose
+### Using Docker Compose
 
 ```bash
 # Start with default configuration
@@ -39,234 +31,276 @@ docker compose up -d --build
 
 ## 🌟 Features
 
-- **Cross-Platform**: Web, iOS, and Android applications from a single codebase
-- **Progressive Web App**: Install on any device, works offline
-- **Native Mobile Apps**: Full native iOS and Android apps with device integration
-- **Responsive Design**: Perfect on phones, tablets, and desktops
-- **Dark Mode Support**: Automatic theme switching based on system preferences
-- **Offline Capable**: Service Worker for offline functionality
-- **Push Notifications**: Stay connected with real-time updates
-- **Modern UI/UX**: Gesture support, haptic feedback, pull-to-refresh
-- **Device Integration**: Camera, microphone, location, and native device features
+- **Multi-Model Support**: Works with Ollama, OpenAI API, and other AI providers
+- **User-Friendly Interface**: Clean, intuitive design for easy AI interaction
+- **Local & Cloud Models**: Run models locally with Ollama or use cloud APIs
+- **Chat Management**: Organize conversations with folders and tags
+- **File Upload**: Support for various file types and document processing
+- **Custom Prompts**: Create and manage custom prompt templates
+- **User Management**: Multi-user support with authentication
+- **API Integration**: RESTful API for external integrations
+- **Docker Support**: Easy deployment with Docker containers
+- **Cross-Platform**: Web interface accessible from any device
 
-## 📱 App Sections
+## 🛠️ Installation
 
-- **Home Feed**: Browse posts from your community
-- **Discover**: Find trending topics and new communities
-- **Create**: Share posts with images and videos
-- **Messages**: Connect with other users
-- **Profile**: Manage your account and settings
+### Prerequisites
 
-## 🚀 Quick Deploy to GitHub Pages
+- Docker and Docker Compose (recommended)
+- Or Python 3.8+ for manual installation
+- Ollama (for local model support)
 
-### Method 1: Using GitHub Web Interface
-
-1. **Fork or Create Repository**
-   - Go to GitHub and create a new repository
-   - Name it `vibecaas-ios` (or any name you prefer)
-
-2. **Upload Files**
-   - Click "Upload files" in your repository
-   - Drag and drop all files from this project
-   - Commit the changes
-
-3. **Enable GitHub Pages**
-   - Go to Settings → Pages
-   - Source: Deploy from a branch
-   - Branch: main (or master)
-   - Folder: / (root)
-   - Click Save
-
-4. **Access Your App**
-   - Your app will be available at: `https://[your-username].github.io/[repository-name]/`
-   - It may take a few minutes for the initial deployment
-
-### Method 2: Using Git Command Line
+### Docker Installation
 
 ```bash
-# Clone this repository
-git clone [this-repo-url] vibecaas-ios
-cd vibecaas-ios
+# Clone the repository
+git clone https://github.com/NeuralQuantumAI/open-webui-nq.git
+cd open-webui-nq
 
-# Create a new repository on GitHub, then:
-git remote add origin https://github.com/[your-username]/vibecaas-ios.git
-git branch -M main
-git push -u origin main
+# Run with Docker Compose
+docker compose up -d
 
-# Enable GitHub Pages in repository settings
+# Or run directly with Docker
+docker run -d --name open-webui-nq -p 3000:8080 -v open-webui-nq:/app/backend/data neuralquantum/open-webui-nq:latest
 ```
 
-### Method 3: Using GitHub Desktop
+### Manual Installation
 
-1. Clone or download this repository
-2. Open GitHub Desktop
-3. Add repository to GitHub Desktop
-4. Publish repository to GitHub
-5. Enable GitHub Pages in repository settings
+```bash
+# Clone the repository
+git clone https://github.com/NeuralQuantumAI/open-webui-nq.git
+cd open-webui-nq
+
+# Install backend dependencies
+cd backend
+pip install -r requirements.txt
+
+# Start the backend
+python main.py
+
+# In another terminal, install frontend dependencies
+cd ../src
+npm install
+
+# Start the frontend development server
+npm run dev
+```
 
 ## 🔧 Configuration
 
-### Custom Domain (Optional)
+### Environment Variables
 
-1. Create a `CNAME` file in the root directory
-2. Add your custom domain (e.g., `vibecaas.example.com`)
-3. Configure DNS settings with your domain provider
+Create a `.env` file in the backend directory:
 
-### Update App Details
+```bash
+# Database
+DATABASE_URL=sqlite:///./data/webui.db
 
-Edit these files to customize your app:
+# Authentication
+SECRET_KEY=your-secret-key-here
 
-- `manifest.json` - App name, colors, icons
-- `index.html` - Meta tags and content
-- `styles.css` - Colors and styling
-- `app.js` - App functionality
+# Ollama Configuration
+OLLAMA_BASE_URL=http://localhost:11434
 
-## 📲 Installation
+# OpenAI Configuration (optional)
+OPENAI_API_KEY=your-openai-api-key
 
-### On iOS
-1. Open Safari and navigate to your GitHub Pages URL
-2. Tap the Share button
-3. Select "Add to Home Screen"
-4. Name your app and tap "Add"
+# Other AI Providers
+ANTHROPIC_API_KEY=your-anthropic-key
+COHERE_API_KEY=your-cohere-key
+```
 
-### On Android
-1. Open Chrome and navigate to your GitHub Pages URL
-2. Tap the three-dot menu
-3. Select "Add to Home screen"
-4. Name your app and tap "Add"
+### Docker Environment
 
-### On Desktop
-1. Open Chrome/Edge and navigate to your GitHub Pages URL
-2. Click the install icon in the address bar
-3. Click "Install"
+```bash
+# Set environment variables for Docker
+docker run -d \
+  --name open-webui-nq \
+  -p 3000:8080 \
+  -e SECRET_KEY=your-secret-key \
+  -e OLLAMA_BASE_URL=http://host.docker.internal:11434 \
+  -v open-webui-nq:/app/backend/data \
+  neuralquantum/open-webui-nq:latest
+```
+
+## 📱 Usage
+
+### Accessing the Interface
+
+1. Open your web browser
+2. Navigate to `http://localhost:3000` (or your configured port)
+3. Create an account or log in
+4. Start chatting with AI models
+
+### Adding Models
+
+#### Ollama Models
+```bash
+# Pull a model
+ollama pull llama2
+
+# The model will automatically appear in the interface
+```
+
+#### API Models
+1. Go to Settings → Models
+2. Add your API key for the provider
+3. Select the model from the dropdown
+4. Start using it in your chats
+
+### Features
+
+- **Chat Interface**: Clean, modern chat interface
+- **Model Management**: Easy switching between different AI models
+- **File Upload**: Upload documents for AI analysis
+- **Custom Prompts**: Create reusable prompt templates
+- **User Management**: Multi-user support with role-based access
+- **API Access**: RESTful API for external integrations
 
 ## 🛠️ Development
 
-### Local Development
+### Setting up Development Environment
 
 ```bash
-# Using Python (Python 3)
-python -m http.server 8000
+# Clone the repository
+git clone https://github.com/NeuralQuantumAI/open-webui-nq.git
+cd open-webui-nq
 
-# Using Node.js
-npx serve
+# Backend setup
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
 
-# Using PHP
-php -S localhost:8000
+# Frontend setup
+cd ../src
+npm install
+
+# Start development servers
+# Terminal 1: Backend
+cd backend && python main.py
+
+# Terminal 2: Frontend
+cd src && npm run dev
 ```
 
-Then open `http://localhost:8000` in your browser.
-
-### Testing PWA Features
-
-1. Use Chrome DevTools → Application tab
-2. Test Service Worker, Manifest, and Cache
-3. Use Lighthouse for PWA audit
-
-## 📦 Project Structure
+### Project Structure
 
 ```
-vibecaas-ios/
-├── index.html          # Main HTML file
-├── styles.css          # iOS-style CSS
-├── app.js             # App functionality
-├── service-worker.js   # Offline support
-├── manifest.json       # PWA configuration
-├── offline.html        # Offline fallback page
-├── icons/             # App icons
-│   ├── icon-32.svg
-│   ├── icon-192.svg
-│   └── icon-512.svg
-├── .nojekyll          # GitHub Pages config
-└── README.md          # Documentation
+open-webui-nq/
+├── backend/                 # Python FastAPI backend
+│   ├── open_webui/         # Main application code
+│   │   ├── models/         # Database models
+│   │   ├── routers/        # API routes
+│   │   ├── utils/          # Utility functions
+│   │   └── main.py         # FastAPI application
+│   └── requirements.txt    # Python dependencies
+├── src/                    # SvelteKit frontend
+│   ├── lib/               # Reusable components
+│   ├── routes/            # Page routes
+│   └── app.html           # Main HTML template
+├── docker-compose.yaml    # Docker configuration
+├── Dockerfile            # Docker image definition
+└── README.md             # This file
 ```
 
-## 🎨 Customization
+### API Documentation
 
-### Change Colors
+The backend provides a RESTful API. When running locally, visit:
+- API Documentation: `http://localhost:8080/docs`
+- Alternative docs: `http://localhost:8080/redoc`
 
-Edit the CSS variables in `styles.css`:
+### Testing
 
-```css
-:root {
-    --ios-blue: #007AFF;
-    --ios-purple: #AF52DE;
-    /* Add your colors */
-}
+```bash
+# Backend tests
+cd backend
+python -m pytest
+
+# Frontend tests
+cd src
+npm test
 ```
-
-### Add New Features
-
-1. Add new tab in `index.html`
-2. Create corresponding content section
-3. Update navigation in `app.js`
-4. Style with `styles.css`
 
 ## 🔒 Security
 
-- HTTPS is required for PWA features
-- GitHub Pages provides HTTPS by default
-- Service Workers only work over HTTPS
-- Keep dependencies updated
+- User authentication and authorization
+- API key management for AI providers
+- Secure file upload handling
+- HTTPS support for production deployments
+- Regular security updates and patches
 
 ## 📈 Performance
 
-- Lighthouse Score: 90+ for PWA
-- First Contentful Paint: < 2s
-- Time to Interactive: < 3s
-- Offline support via Service Worker
+- Fast and responsive web interface
+- Efficient model switching
+- Optimized API calls
+- Caching for improved performance
+- Docker containerization for easy scaling
 
 ## 🤝 Contributing
 
+We welcome contributions! Please follow these steps:
+
 1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+### Development Guidelines
+
+- Follow the existing code style
+- Add tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting
 
 ## 📝 License
 
-MIT License - feel free to use this project for your own apps!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🌐 Live Demo
+## 🌐 Links
 
-Once deployed, your app will be available at:
-- `https://[your-username].github.io/vibecaas-ios/`
-
-## 💡 Tips
-
-- Use Chrome DevTools for debugging
-- Test on real devices for best results
-- Enable "Add to Home Screen" prompt
-- Customize icons and splash screens
-- Monitor with Google Analytics (optional)
+- **Original Open WebUI**: [https://github.com/open-webui/open-webui](https://github.com/open-webui/open-webui)
+- **Website**: [https://openwebui.com](https://openwebui.com)
+- **Documentation**: [https://docs.openwebui.com](https://docs.openwebui.com)
 
 ## 🚨 Troubleshooting
 
-### App not installing?
-- Ensure HTTPS is enabled
-- Check manifest.json is valid
-- Verify Service Worker registration
+### Common Issues
 
-### GitHub Pages not working?
-- Wait 10-20 minutes for initial deployment
-- Check repository settings
-- Ensure index.html is in root
+**Can't connect to Ollama?**
+- Ensure Ollama is running: `ollama serve`
+- Check the OLLAMA_BASE_URL in your configuration
+- Verify firewall settings allow connections
 
-### Icons not showing?
-- Check file paths in manifest.json
-- Verify icon files exist
-- Clear browser cache
+**Models not appearing?**
+- Check if Ollama is running and models are pulled
+- Verify API keys for external providers
+- Check the logs for error messages
+
+**Docker issues?**
+- Ensure Docker is running
+- Check port availability (3000, 8080)
+- Verify volume permissions
+
+### Getting Help
+
+1. Check the [troubleshooting guide](https://docs.openwebui.com/troubleshooting)
+2. Search existing [GitHub Issues](https://github.com/NeuralQuantumAI/open-webui-nq/issues)
+3. Create a new issue with detailed information
+4. Join the community discussions
 
 ## 📞 Support
 
-For issues or questions:
-1. Check the troubleshooting section
-2. Open an issue on GitHub
-3. Check browser console for errors
+For support and questions:
+
+- **GitHub Issues**: [https://github.com/NeuralQuantumAI/open-webui-nq/issues](https://github.com/NeuralQuantumAI/open-webui-nq/issues)
+- **Documentation**: [https://docs.openwebui.com](https://docs.openwebui.com)
+- **Community**: [Open WebUI Discord](https://discord.gg/openwebui)
 
 ---
 
-**Built with ❤️ as a Progressive Web App**
+**Built with ❤️ by Neural Quantum AI**
 
-Ready to deploy to GitHub Pages! 🚀
+A powerful, user-friendly AI interface for everyone! 🚀
