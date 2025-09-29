@@ -3,102 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuralQuantum.ai - Quantum-Inspired AI Platform</title>
+    <title>NeuralQuantum.ai - Where AI Meets Quantum Computing</title>
+    <meta name="description" content="Pioneering quantum-enhanced AI solutions for enterprise. Experience the future of intelligent computing with NeuralQuantum.ai">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="quantum-particles"></div>
     
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="16" cy="16" r="15" stroke="url(#gradient1)" stroke-width="2"/>
-                    <circle cx="16" cy="16" r="10" stroke="url(#gradient2)" stroke-width="1.5" opacity="0.7"/>
-                    <circle cx="16" cy="16" r="5" fill="url(#gradient3)"/>
-                    <defs>
-                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
-                        </linearGradient>
-                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
-                        </linearGradient>
-                        <radialGradient id="gradient3">
-                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
-                        </radialGradient>
-                    </defs>
-                </svg>
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="23" stroke="url(#logo-gradient1)" stroke-width="2"/>
+                        <circle cx="24" cy="24" r="16" stroke="url(#logo-gradient2)" stroke-width="1.5" opacity="0.7"/>
+                        <circle cx="24" cy="24" r="10" stroke="url(#logo-gradient3)" stroke-width="1.2" opacity="0.5"/>
+                        <circle cx="24" cy="24" r="5" fill="url(#logo-gradient4)"/>
+                        <path d="M24 8 L24 40 M8 24 L40 24" stroke="url(#logo-gradient5)" stroke-width="0.5" opacity="0.3"/>
+                        <defs>
+                            <linearGradient id="logo-gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#2563eb;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="logo-gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="logo-gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+                            </linearGradient>
+                            <radialGradient id="logo-gradient4">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                            </radialGradient>
+                            <linearGradient id="logo-gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.5" />
+                                <stop offset="100%" style="stop-color:#0891b2;stop-opacity:0.5" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
                 <span>NeuralQuantum.ai</span>
-            </div>
+            </a>
             <div class="nav-links">
                 <a href="#quantum" class="nav-link">Quantum Simulator</a>
-                <a href="#ai" class="nav-link">AI Generator</a>
+                <a href="#ai" class="nav-link">AI Solutions</a>
                 <a href="#analytics" class="nav-link">Analytics</a>
-                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#partnership" class="nav-link">Partnership</a>
             </div>
         </div>
     </nav>
 
     <main class="container">
         <section class="hero">
-            <h1 class="hero-title">
-                <span class="gradient-text">Quantum-Inspired</span>
-                <br>Artificial Intelligence
-            </h1>
-            <p class="hero-subtitle">
-                Harness the power of quantum computing principles to revolutionize AI solutions
-            </p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="scrollToSection('quantum')">
-                    Explore Quantum
-                </button>
-                <button class="btn btn-secondary" onclick="scrollToSection('ai')">
-                    Try AI Generator
-                </button>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Where AI Meets</span>
+                    Quantum Computing
+                </h1>
+                <p class="hero-subtitle">
+                    Pioneering the future of intelligent computing through quantum-enhanced AI solutions. 
+                    Experience unprecedented computational power for enterprise innovation.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('quantum')">
+                        Explore Quantum Simulator
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('ai')">
+                        Try AI Solutions
+                    </button>
+                </div>
             </div>
         </section>
 
         <section id="quantum" class="section">
-            <h2 class="section-title">Quantum Simulator</h2>
-            <div class="card">
+            <h2 class="section-title">
+                <span class="gradient-text">Quantum Computing</span>
+                Simulator
+            </h2>
+            <div class="card quantum-card">
                 <div class="quantum-controls">
-                    <input type="text" id="quantumInput" class="input" placeholder="Enter quantum state or value">
+                    <input type="text" id="quantumInput" class="input" placeholder="Enter quantum state (e.g., |0⟩, |1⟩, |+⟩)">
                     <select id="algorithmSelect" class="select">
                         <option value="superposition">Superposition</option>
                         <option value="entanglement">Entanglement</option>
-                        <option value="teleportation">Teleportation</option>
+                        <option value="teleportation">Quantum Teleportation</option>
                         <option value="grover">Grover's Algorithm</option>
                         <option value="shor">Shor's Algorithm</option>
+                        <option value="qaoa">QAOA</option>
+                        <option value="vqe">VQE</option>
                     </select>
-                    <button class="btn btn-primary" onclick="simulateQuantum()">Simulate</button>
+                    <button class="btn btn-primary" onclick="simulateQuantum()">
+                        Run Simulation
+                    </button>
                 </div>
                 <div id="quantumResult" class="result-box"></div>
-                <canvas id="quantumVisualizer" width="600" height="300"></canvas>
+                <canvas id="quantumVisualizer" width="800" height="400"></canvas>
             </div>
         </section>
 
         <section id="ai" class="section">
-            <h2 class="section-title">AI Text Generator</h2>
+            <h2 class="section-title">
+                <span class="gradient-text">Quantum-Enhanced</span>
+                AI Text Generation
+            </h2>
             <div class="card">
-                <textarea id="aiPrompt" class="textarea" placeholder="Enter your prompt for AI generation..."></textarea>
+                <textarea id="aiPrompt" class="textarea" placeholder="Enter your prompt for quantum-enhanced AI generation...
+
+Example: 'Explain how quantum computing can revolutionize machine learning algorithms'"></textarea>
                 <div class="ai-controls">
-                    <input type="number" id="maxTokens" class="input-small" placeholder="Max tokens" value="100" min="10" max="500">
-                    <button class="btn btn-primary" onclick="generateAI()">Generate</button>
+                    <input type="number" id="maxTokens" class="input-small" placeholder="Max tokens" value="150" min="10" max="500">
+                    <select class="select input-small">
+                        <option>Quantum-GPT</option>
+                        <option>Neural-Q</option>
+                        <option>Entangled-AI</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="generateAI()">
+                        Generate Response
+                    </button>
                 </div>
                 <div id="aiResult" class="result-box"></div>
             </div>
         </section>
 
         <section id="analytics" class="section">
-            <h2 class="section-title">Platform Analytics</h2>
+            <h2 class="section-title">
+                <span class="gradient-text">Real-Time</span>
+                Platform Analytics
+            </h2>
             <div class="analytics-grid">
                 <div class="stat-card">
                     <div class="stat-value" id="totalRequests">0</div>
-                    <div class="stat-label">Total Requests</div>
+                    <div class="stat-label">API Requests</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="activeUsers">0</div>
@@ -113,46 +153,110 @@
                     <div class="stat-label">AI Generations</div>
                 </div>
             </div>
-            <button class="btn btn-secondary" onclick="refreshAnalytics()">Refresh Analytics</button>
+            <div style="text-align: center;">
+                <button class="btn btn-secondary" onclick="refreshAnalytics()">
+                    Refresh Analytics
+                </button>
+            </div>
         </section>
 
         <section id="features" class="section">
-            <h2 class="section-title">Platform Features</h2>
+            <h2 class="section-title">
+                <span class="gradient-text">Platform</span>
+                Features
+            </h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">⚛️</div>
-                    <h3>Quantum Computing</h3>
-                    <p>Simulate quantum algorithms and explore superposition states</p>
+                    <h3>Quantum Algorithms</h3>
+                    <p>Advanced quantum algorithms including Grover's, Shor's, QAOA, and VQE for solving complex computational problems.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🧠</div>
                     <h3>Neural Networks</h3>
-                    <p>Advanced AI models inspired by quantum mechanics</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Real-time Analytics</h3>
-                    <p>Monitor platform performance and usage metrics</p>
+                    <p>Quantum-inspired neural networks that leverage superposition and entanglement for enhanced learning capabilities.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔬</div>
                     <h3>Research Tools</h3>
-                    <p>Cutting-edge tools for quantum AI research</p>
+                    <p>Cutting-edge research tools for exploring the intersection of quantum mechanics and artificial intelligence.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Enterprise Analytics</h3>
+                    <p>Real-time monitoring and analytics dashboard for tracking quantum computations and AI model performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Quantum Security</h3>
+                    <p>Quantum-safe cryptography and security protocols to protect sensitive data in the quantum era.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Scalable Infrastructure</h3>
+                    <p>Cloud-native architecture designed for horizontal scaling and optimal performance across distributed systems.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="partnership" class="section">
+            <h2 class="section-title">
+                <span class="gradient-text">Strategic</span>
+                Partnerships
+            </h2>
+            <div class="nvidia-partnership-badge">
+                <div class="nvidia-badge-text">
+                    🎯 NVIDIA INCEPTION PARTNER
+                    <span class="nvidia-logo">
+                        <svg width="60" height="20" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h60v20H0z" fill="#76B900"/>
+                            <text x="30" y="14" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="white">NVIDIA</text>
+                        </svg>
+                    </span>
+                </div>
+                <p style="margin-top: 1rem; color: #6b7280; font-size: 0.875rem;">
+                    Accelerating quantum-AI research with NVIDIA's cutting-edge GPU technology and CUDA Quantum platform
+                </p>
+            </div>
+            
+            <div class="features-grid" style="margin-top: 3rem;">
+                <div class="card">
+                    <h3 style="color: #050038; margin-bottom: 1rem;">GPU Acceleration</h3>
+                    <p style="color: #6b7280;">Leveraging NVIDIA A100 and H100 GPUs for quantum circuit simulation and AI model training.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: #050038; margin-bottom: 1rem;">CUDA Quantum</h3>
+                    <p style="color: #6b7280;">Integrating CUDA Quantum for hybrid quantum-classical computing workflows.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: #050038; margin-bottom: 1rem;">Inception Program</h3>
+                    <p style="color: #6b7280;">Access to NVIDIA's ecosystem of resources, expertise, and go-to-market support.</p>
                 </div>
             </div>
         </section>
 
         <section id="about" class="section">
-            <h2 class="section-title">About NeuralQuantum.ai</h2>
-            <div class="card">
-                <p class="about-text">
-                    NeuralQuantum.ai represents the convergence of quantum computing principles and artificial intelligence. 
-                    Our platform enables researchers and developers to explore the fascinating intersection of these 
-                    revolutionary technologies.
+            <h2 class="section-title">
+                <span class="gradient-text">About</span>
+                NeuralQuantum.ai
+            </h2>
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.125rem; line-height: 1.8; color: #4b5563; margin-bottom: 1.5rem;">
+                    NeuralQuantum.ai represents the convergence of two revolutionary technologies: 
+                    quantum computing and artificial intelligence. Our platform enables researchers, 
+                    developers, and enterprises to harness the power of quantum-enhanced algorithms 
+                    for solving previously intractable problems.
                 </p>
-                <p class="about-text">
-                    By leveraging quantum-inspired algorithms, we're pushing the boundaries of what's possible in 
-                    machine learning, optimization, and computational problem-solving.
+                <p style="font-size: 1.125rem; line-height: 1.8; color: #4b5563; margin-bottom: 1.5rem;">
+                    By leveraging quantum principles such as superposition, entanglement, and quantum 
+                    interference, we're pushing the boundaries of what's possible in machine learning, 
+                    optimization, and computational problem-solving.
+                </p>
+                <p style="font-size: 1.125rem; line-height: 1.8; color: #4b5563;">
+                    Our mission is to democratize access to quantum computing resources and make 
+                    quantum-AI solutions accessible to organizations of all sizes, accelerating 
+                    innovation across industries from pharmaceuticals to finance, logistics to 
+                    cybersecurity.
                 </p>
             </div>
         </section>
@@ -160,12 +264,46 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 NeuralQuantum.ai - Pioneering Quantum AI Solutions</p>
-            <div class="footer-links">
-                <a href="#" class="footer-link">Documentation</a>
-                <a href="#" class="footer-link">API</a>
-                <a href="#" class="footer-link">GitHub</a>
-                <a href="#" class="footer-link">Contact</a>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>NeuralQuantum.ai</h3>
+                    <p>Pioneering the future of intelligent computing through quantum-enhanced AI solutions.</p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <a href="#" class="footer-link">🐦 Twitter</a>
+                        <a href="#" class="footer-link">💼 LinkedIn</a>
+                        <a href="#" class="footer-link">🐙 GitHub</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Products</h4>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Quantum Simulator</a>
+                        <a href="#" class="footer-link">AI Platform</a>
+                        <a href="#" class="footer-link">Enterprise Solutions</a>
+                        <a href="#" class="footer-link">Research Tools</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Documentation</a>
+                        <a href="#" class="footer-link">API Reference</a>
+                        <a href="#" class="footer-link">Tutorials</a>
+                        <a href="#" class="footer-link">Blog</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">About Us</a>
+                        <a href="#" class="footer-link">Careers</a>
+                        <a href="#" class="footer-link">Partners</a>
+                        <a href="#" class="footer-link">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NeuralQuantum.ai - All rights reserved. | Quantum-ready AI solutions for enterprise innovation.</p>
             </div>
         </div>
     </footer>
