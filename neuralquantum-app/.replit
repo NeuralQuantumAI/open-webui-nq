@@ -1,0 +1,28 @@
+run = "npm start"
+entrypoint = "server.js"
+hidden = [".config", "package-lock.json"]
+modules = ["nodejs-20:v26-20240213-a5f5b8a"]
+
+[nix]
+channel = "stable-23_11"
+
+[env]
+PATH = "/home/runner/$REPL_SLUG/.config/npm/node_global/bin:/home/runner/$REPL_SLUG/node_modules/.bin:$PATH"
+npm_config_prefix = "/home/runner/$REPL_SLUG/.config/npm/node_global"
+
+[packager]
+language = "nodejs"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+enabledForHosting = false
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[deployment]
+run = ["node", "server.js"]
+deploymentTarget = "cloudrun"
+ignorePorts = false

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuralQuantum.ai - Quantum-Inspired AI Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="quantum-particles"></div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="15" stroke="url(#gradient1)" stroke-width="2"/>
+                    <circle cx="16" cy="16" r="10" stroke="url(#gradient2)" stroke-width="1.5" opacity="0.7"/>
+                    <circle cx="16" cy="16" r="5" fill="url(#gradient3)"/>
+                    <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+                        </linearGradient>
+                        <radialGradient id="gradient3">
+                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+                <span>NeuralQuantum.ai</span>
+            </div>
+            <div class="nav-links">
+                <a href="#quantum" class="nav-link">Quantum Simulator</a>
+                <a href="#ai" class="nav-link">AI Generator</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h1 class="hero-title">
+                <span class="gradient-text">Quantum-Inspired</span>
+                <br>Artificial Intelligence
+            </h1>
+            <p class="hero-subtitle">
+                Harness the power of quantum computing principles to revolutionize AI solutions
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('quantum')">
+                    Explore Quantum
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('ai')">
+                    Try AI Generator
+                </button>
+            </div>
+        </section>
+
+        <section id="quantum" class="section">
+            <h2 class="section-title">Quantum Simulator</h2>
+            <div class="card">
+                <div class="quantum-controls">
+                    <input type="text" id="quantumInput" class="input" placeholder="Enter quantum state or value">
+                    <select id="algorithmSelect" class="select">
+                        <option value="superposition">Superposition</option>
+                        <option value="entanglement">Entanglement</option>
+                        <option value="teleportation">Teleportation</option>
+                        <option value="grover">Grover's Algorithm</option>
+                        <option value="shor">Shor's Algorithm</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="simulateQuantum()">Simulate</button>
+                </div>
+                <div id="quantumResult" class="result-box"></div>
+                <canvas id="quantumVisualizer" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section id="ai" class="section">
+            <h2 class="section-title">AI Text Generator</h2>
+            <div class="card">
+                <textarea id="aiPrompt" class="textarea" placeholder="Enter your prompt for AI generation..."></textarea>
+                <div class="ai-controls">
+                    <input type="number" id="maxTokens" class="input-small" placeholder="Max tokens" value="100" min="10" max="500">
+                    <button class="btn btn-primary" onclick="generateAI()">Generate</button>
+                </div>
+                <div id="aiResult" class="result-box"></div>
+            </div>
+        </section>
+
+        <section id="analytics" class="section">
+            <h2 class="section-title">Platform Analytics</h2>
+            <div class="analytics-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalRequests">0</div>
+                    <div class="stat-label">Total Requests</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="activeUsers">0</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="quantumSims">0</div>
+                    <div class="stat-label">Quantum Simulations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="aiGens">0</div>
+                    <div class="stat-label">AI Generations</div>
+                </div>
+            </div>
+            <button class="btn btn-secondary" onclick="refreshAnalytics()">Refresh Analytics</button>
+        </section>
+
+        <section id="features" class="section">
+            <h2 class="section-title">Platform Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚛️</div>
+                    <h3>Quantum Computing</h3>
+                    <p>Simulate quantum algorithms and explore superposition states</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Neural Networks</h3>
+                    <p>Advanced AI models inspired by quantum mechanics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Monitor platform performance and usage metrics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Research Tools</h3>
+                    <p>Cutting-edge tools for quantum AI research</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2 class="section-title">About NeuralQuantum.ai</h2>
+            <div class="card">
+                <p class="about-text">
+                    NeuralQuantum.ai represents the convergence of quantum computing principles and artificial intelligence. 
+                    Our platform enables researchers and developers to explore the fascinating intersection of these 
+                    revolutionary technologies.
+                </p>
+                <p class="about-text">
+                    By leveraging quantum-inspired algorithms, we're pushing the boundaries of what's possible in 
+                    machine learning, optimization, and computational problem-solving.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 NeuralQuantum.ai - Pioneering Quantum AI Solutions</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">API</a>
+                <a href="#" class="footer-link">GitHub</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
